@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { login } from '../../api/kuala-api/users/users';
+import LoginForm from './LoginForm';
 
 const LoginPage = () => {
     let [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,7 +19,8 @@ const LoginPage = () => {
 
     return (
         <React.Fragment>
-            <div>This is the login page</div>
+            <div>Login</div>
+            <LoginForm />
             <div>{isAuthenticated ? 'Authenticated' : 'Not authenticated'}</div>
         </React.Fragment>
     );

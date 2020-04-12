@@ -9,6 +9,7 @@
         "axios": "^0.19.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-hook-form": "^5.3.1",
         "react-router-dom": "^5.1.2",
         "react-scripts": "3.4.1",
         "styled-components": "^5.1.0"
@@ -17,7 +18,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "storybook": "start-storybook"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -33,5 +35,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@storybook/react": "^5.3.18"
     }
 }
