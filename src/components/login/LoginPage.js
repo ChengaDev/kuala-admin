@@ -13,14 +13,16 @@ const LoginPage = () => {
 
     const handleLogin = async (email, password) => {
         setIsFetching(true);
-        const response = await login(email, password);
-        setIsFetching(false);
-        if (response.status === 200) {
-            auth.login();
-            setIsAuthenticated(true);
-        } else {
-            setIsLoginFailed(true);
-        }
+        setTimeout(async () => {
+            const response = await login(email, password);
+            setIsFetching(false);
+            if (response.status === 200) {
+                auth.login();
+                setIsAuthenticated(true);
+            } else {
+                setIsLoginFailed(true);
+            }
+        }, 1000);
     };
 
     const redirectToApplication = () => {
@@ -67,7 +69,7 @@ const Rotate = keyframes`
 
 const LoginBox = styled.div`
     animation: ${FadeInAnimation} 1s;
-    background-color: #fff;
+    background-color: ${(props) => props.theme.colors.white};
     height: fit-content;
     max-width: 320px;
     position: relative;
@@ -91,7 +93,7 @@ const Logo = styled.div`
 const LoginPageWrapper = styled.div`
     position: relative;
     min-height: 100vh;
-    background-color: #60cbeb;
+    background-color: ${(props) => props.theme.colors.appBackground};
     width: 100%;
 `;
 
@@ -100,7 +102,7 @@ const ForgotPassword = styled.div`
     text-align: center;
 
     & a {
-        color: #fff;
+        color: ${(props) => props.theme.colors.white};
         font-size: 15px;
         position: relative;
         top: 11.5vh;
@@ -111,8 +113,8 @@ const ForgotPassword = styled.div`
 const LoginFailedMessage = styled.div`
     margin-top: 2vh;
     text-align: center;
-    font-size: 14px;
-    color: red;
+    font-size: ${(props) => props.theme.fontSizes.inputValidationMessage};
+    color: ${(props) => props.theme.colors.red};
 `;
 
 export default LoginPage;

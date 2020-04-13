@@ -6,7 +6,7 @@ const PasswordRecoveryPage = () => {
 };
 
 const Page = styled.div`
-    background-color: #60cbeb;
+    background-color: ${(props) => props.theme.colors.appBackground};
     min-height: 100vh;
 `;
 
