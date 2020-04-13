@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import logo from '../../images/LOGO_cropped.png';
 import { Link, Redirect } from 'react-router-dom';
 import auth from '../../auth/Auth';
+import routes from '../../appRoutes';
 
 const LoginPage = () => {
     let [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,7 +27,7 @@ const LoginPage = () => {
     };
 
     const redirectToApplication = () => {
-        return <Redirect to='/' />;
+        return <Redirect to={routes.home} />;
     };
 
     const renderLoginPage = () => {
@@ -45,7 +46,9 @@ const LoginPage = () => {
                     )}
                 </LoginBox>
                 <ForgotPassword>
-                    <Link to='/password'>Forgot your password?</Link>
+                    <Link to={routes.forgotPassword}>
+                        Forgot your password?
+                    </Link>
                 </ForgotPassword>
             </LoginPageWrapper>
         );
@@ -76,7 +79,7 @@ const LoginBox = styled.div`
     top: 10vh;
     margin: 0 auto;
     padding: 20px;
-    box-shadow: 0 0 10px #888;
+    box-shadow: 0 0 12px #888;
     min-height: 400px;
 
     & h2 {

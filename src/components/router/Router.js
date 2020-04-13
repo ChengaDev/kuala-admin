@@ -6,19 +6,20 @@ import NotFoundPage from '../errors/NotFoundError';
 import Home from '../home/Home';
 import { createBrowserHistory } from 'history';
 import ProtectedRoute from './ProtectedRoute';
+import routes from '../../appRoutes';
 
 const ApplicationRouter = () => {
     const history = createBrowserHistory();
     return (
         <Router history={history}>
             <Switch>
-                <Route exact component={LoginPage} path='/login' />
+                <Route exact component={LoginPage} path={routes.login} />
                 <Route
                     exact
                     component={PasswordRecoveryPage}
-                    path='/password'
+                    path={routes.forgotPassword}
                 />
-                <ProtectedRoute exact component={Home} path='/' />
+                <ProtectedRoute exact component={Home} path={routes.home} />
                 <Route path='*' component={NotFoundPage} />
             </Switch>
         </Router>
