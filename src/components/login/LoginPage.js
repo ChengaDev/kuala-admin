@@ -1,34 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { login } from '../../api/kuala-api/users/users';
 import LoginForm from './LoginForm';
 import styled, { keyframes } from 'styled-components';
 import logo from '../../images/LOGO_cropped.png';
+import { Link, Redirect } from 'react-router-dom';
+import auth from '../../auth/Auth';
 
 const LoginPage = () => {
     let [isAuthenticated, setIsAuthenticated] = useState(false);
+    let [isLoginFailed, setIsLoginFailed] = useState(false);
+    let [isFetching, setIsFetching] = useState(false);
 
-    useEffect(() => {
-        const loginRequest = async () => {
-            const response = await login('gazit.chen@gmail.com', 'chen123');
+    const handleLogin = async (email, password) => {
+        setIsFetching(true);
+        const response = await login(email, password);
+        setIsFetching(false);
+        if (response.status === 200) {
+            auth.login();
+            setIsAuthenticated(true);
+        } else {
+            setIsLoginFailed(true);
+        }
+    };
 
-            if (response.status === 200) {
-                setIsAuthenticated(true);
-            }
-        };
+    const redirectToApplication = () => {
+        return <Redirect to='/' />;
+    };
 
-        loginRequest();
-    }, [isAuthenticated]);
+    const renderLoginPage = () => {
+        return (
+            <LoginPageWrapper>
+                <LoginBox>
+                    <h2>Login</h2>
+                    <Logo>
+                        <img height='80' width='80' src={logo} alt='logo' />
+                    </Logo>
+                    <LoginForm isFetching={isFetching} onSubmit={handleLogin} />
+                    {isLoginFailed && (
+                        <LoginFailedMessage>
+                            Login failed, please try again
+                        </LoginFailedMessage>
+                    )}
+                </LoginBox>
+                <ForgotPassword>
+                    <Link to='/password'>Forgot your password?</Link>
+                </ForgotPassword>
+            </LoginPageWrapper>
+        );
+    };
 
     return (
-        <LoginPageWrapper>
-            <LoginBox>
-                <h2>Login</h2>
-                <Logo>
-                    <img height='80' width='80' src={logo} alt='logo' />
-                </Logo>
-                <LoginForm />
-            </LoginBox>
-        </LoginPageWrapper>
+        <React.Fragment>
+            {isAuthenticated ? redirectToApplication() : renderLoginPage()}
+        </React.Fragment>
     );
 };
 
@@ -45,7 +69,7 @@ const LoginBox = styled.div`
     animation: ${FadeInAnimation} 1s;
     background-color: #fff;
     height: fit-content;
-    max-width: 300px;
+    max-width: 320px;
     position: relative;
     top: 10vh;
     margin: 0 auto;
@@ -59,7 +83,7 @@ const LoginBox = styled.div`
 `;
 
 const Logo = styled.div`
-    animation: ${Rotate} 1s;
+    animation: ${Rotate} 1.25s;
     margin-top: 30px;
     text-align: center;
 `;
@@ -69,6 +93,26 @@ const LoginPageWrapper = styled.div`
     min-height: 100vh;
     background-color: #60cbeb;
     width: 100%;
+`;
+
+const ForgotPassword = styled.div`
+    animation: ${FadeInAnimation} 1s;
+    text-align: center;
+
+    & a {
+        color: #fff;
+        font-size: 15px;
+        position: relative;
+        top: 11.5vh;
+        text-decoration: none !important;
+    }
+`;
+
+const LoginFailedMessage = styled.div`
+    margin-top: 2vh;
+    text-align: center;
+    font-size: 14px;
+    color: red;
 `;
 
 export default LoginPage;

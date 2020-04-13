@@ -6,16 +6,18 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
     email: Yup.string()
-        .email('Invalid email')
-        .required('Please insert you email'),
-    password: Yup.string().required('Please insert you password')
+        .email('Please insert valid email')
+        .required('Please insert your email'),
+    password: Yup.string()
+        .required('Please insert you password')
+        .min(8, 'Minimum 8 chearacters')
 });
 
-const LoginForm = () => {
+const LoginForm = ({ onSubmit, isFetching }) => {
     return (
         <FormWrapper>
             <Formik
-                onSubmit={console.log}
+                onSubmit={(values) => onSubmit(values.email, values.password)}
                 validationSchema={validationSchema}
                 initialValues={{
                     email: '',
@@ -24,50 +26,50 @@ const LoginForm = () => {
             >
                 {({ handleSubmit, values, handleChange, touched, errors }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Form.Row>
-                            <Form.Group controlId='validationFormikEmail'>
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    type='email'
-                                    name='email'
-                                    placeholder='Enter email'
-                                    isValid={touched.email && !errors.email}
-                                    isInvalid={!!errors.email}
-                                />
-                                <Form.Control.Feedback type='valid'>
-                                    Looks good!
-                                </Form.Control.Feedback>
-                                <Form.Control.Feedback type='invalid'>
-                                    {errors.email}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group controlId='validationFormikPassword'>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    onChange={handleChange}
-                                    type='password'
-                                    name='password'
-                                    value={values.password}
-                                    isValid={
-                                        touched.password && !errors.password
-                                    }
-                                    isInvalid={!!errors.password}
-                                />
-                                <Form.Control.Feedback type='valid'>
-                                    Looks good!
-                                </Form.Control.Feedback>
-                                <Form.Control.Feedback type='invalid'>
-                                    {errors.password}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Form.Row>
+                        <Form.Group controlId='validationFormikEmail'>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                                onChange={handleChange}
+                                value={values.email}
+                                type='email'
+                                name='email'
+                                placeholder='Enter email'
+                                isValid={touched.email && !errors.email}
+                                isInvalid={!!errors.email}
+                            />
+                            <Form.Control.Feedback type='valid'>
+                                Looks good!
+                            </Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>
+                                {errors.email}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group controlId='validationFormikPassword'>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                onChange={handleChange}
+                                type='password'
+                                name='password'
+                                value={values.password}
+                                isValid={touched.password && !errors.password}
+                                isInvalid={!!errors.password}
+                            />
+                            <Form.Control.Feedback type='valid'>
+                                Looks good!
+                            </Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>
+                                {errors.password}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
                         <ButtonWrapper>
-                            <Button variant='primary' type='submit'>
-                                Submit
+                            <Button
+                                disabled={isFetching}
+                                variant='primary'
+                                type='submit'
+                            >
+                                {isFetching ? 'Get Ready...' : 'Get in!'}
                             </Button>
                         </ButtonWrapper>
                     </Form>
@@ -83,7 +85,12 @@ const FormWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
     text-align: center;
-    margin-top: 40px;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+
+    ${Button} {
+        min-width: 150px;
+    }
 `;
 
 export default LoginForm;
