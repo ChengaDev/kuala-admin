@@ -1,31 +1,89 @@
 import React from 'react';
 import styled from 'styled-components';
-import useForm from 'react-hook-form';
+import { Button, Form } from 'react-bootstrap';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Please insert you email'),
+    password: Yup.string().required('Please insert you password')
+});
 
 const LoginForm = () => {
-    const { handleSubmit, register, errors } = useForm();
-
-    const onSubmit = (values) => {
-        console.log(values);
-    };
-
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label>Email Address</label>
-                <input type='email' name='email' required />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type='password' name='password' />
-            </div>
-            <button type='submit'>Sign Up</button>
-        </Form>
+        <FormWrapper>
+            <Formik
+                onSubmit={console.log}
+                validationSchema={validationSchema}
+                initialValues={{
+                    email: '',
+                    password: ''
+                }}
+            >
+                {({ handleSubmit, values, handleChange, touched, errors }) => (
+                    <Form noValidate onSubmit={handleSubmit}>
+                        <Form.Row>
+                            <Form.Group controlId='validationFormikEmail'>
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control
+                                    onChange={handleChange}
+                                    value={values.email}
+                                    type='email'
+                                    name='email'
+                                    placeholder='Enter email'
+                                    isValid={touched.email && !errors.email}
+                                    isInvalid={!!errors.email}
+                                />
+                                <Form.Control.Feedback type='valid'>
+                                    Looks good!
+                                </Form.Control.Feedback>
+                                <Form.Control.Feedback type='invalid'>
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group controlId='validationFormikPassword'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    onChange={handleChange}
+                                    type='password'
+                                    name='password'
+                                    value={values.password}
+                                    isValid={
+                                        touched.password && !errors.password
+                                    }
+                                    isInvalid={!!errors.password}
+                                />
+                                <Form.Control.Feedback type='valid'>
+                                    Looks good!
+                                </Form.Control.Feedback>
+                                <Form.Control.Feedback type='invalid'>
+                                    {errors.password}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Form.Row>
+                        <ButtonWrapper>
+                            <Button variant='primary' type='submit'>
+                                Submit
+                            </Button>
+                        </ButtonWrapper>
+                    </Form>
+                )}
+            </Formik>
+        </FormWrapper>
     );
 };
 
-const Form = styled.form`
-    font-size: 20px;
+const FormWrapper = styled.div`
+    margin-top: 30px;
+`;
+
+const ButtonWrapper = styled.div`
+    text-align: center;
+    margin-top: 40px;
 `;
 
 export default LoginForm;
