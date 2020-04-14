@@ -12,7 +12,6 @@ class Auth {
     }
 
     isAuthenticated() {
-        debugger;
         return this.authenticated;
     }
 }

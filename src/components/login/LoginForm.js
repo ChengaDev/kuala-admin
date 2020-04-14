@@ -87,10 +87,6 @@ const ButtonWrapper = styled.div`
     text-align: center;
     margin-top: 4vh;
     margin-bottom: 2vh;
-
-    ${Button} {
-        min-width: 150px;
-    }
 `;
 
 export default LoginForm;

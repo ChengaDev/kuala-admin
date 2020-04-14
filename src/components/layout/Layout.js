@@ -1,12 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Layout = ({ children }) => {
     return (
-        <div>
+        <LayoutWrapper>
             Layout
             {children}
-        </div>
+        </LayoutWrapper>
     );
 };
+
+const LayoutWrapper = styled.div`
+    height: 100vh;
+`;
 
 export default Layout;

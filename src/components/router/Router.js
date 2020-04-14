@@ -1,12 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
 import LoginPage from '../login/LoginPage';
 import PasswordRecoveryPage from '../password/PasswordRecoveryPage';
 import NotFoundPage from '../errors/NotFoundError';
-import Home from '../home/Home';
 import { createBrowserHistory } from 'history';
 import ProtectedRoute from './ProtectedRoute';
 import routes from '../../appRoutes';
+import KualaLoader from '../layout/KualaLoader';
+const Home = lazy(() =>
+    import(/* webpackChunkName: "homepage" */ '../home/Home')
+);
 
 const ApplicationRouter = () => {
     const history = createBrowserHistory();
@@ -19,7 +22,9 @@ const ApplicationRouter = () => {
                     component={PasswordRecoveryPage}
                     path={routes.forgotPassword}
                 />
-                <ProtectedRoute exact component={Home} path={routes.home} />
+                <Suspense fallback={<KualaLoader />}>
+                    <ProtectedRoute exact component={Home} path={routes.home} />
+                </Suspense>
                 <Route path='*' component={NotFoundPage} />
             </Switch>
         </Router>
