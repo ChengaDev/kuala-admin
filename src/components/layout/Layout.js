@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import SideBar from './SideBar';
 
 const Layout = ({ children }) => {
     return (
-        <LayoutWrapper>
-            Layout
-            {children}
-        </LayoutWrapper>
+        <>
+            <SideBar />
+            <Content>{children}</Content>
+        </>
     );
 };
 
-const LayoutWrapper = styled.div`
+const Content = styled.div`
     height: 100vh;
 `;
 

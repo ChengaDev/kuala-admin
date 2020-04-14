@@ -7,9 +7,15 @@ import { createBrowserHistory } from 'history';
 import ProtectedRoute from './ProtectedRoute';
 import routes from '../../appRoutes';
 import KualaLoader from '../layout/KualaLoader';
-const Home = lazy(() =>
-    import(/* webpackChunkName: "homepage" */ '../home/Home')
-);
+const Home = lazy(() => {
+    return new Promise((resolve) => {
+        setTimeout(
+            () =>
+                resolve(import(/* webpackChunkName: "home" */ '../home/Home')),
+            1000
+        );
+    });
+});
 
 const ApplicationRouter = () => {
     const history = createBrowserHistory();
