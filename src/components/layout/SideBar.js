@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from '../../images/LOGO_cropped.png';
+import { Button } from 'react-bootstrap';
+import navigationLinks from '../../staticData/navigationLinks';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
@@ -8,13 +11,42 @@ const SideBar = () => {
             <Logo>
                 <img alt='לוגו' src={logo} />
             </Logo>
+
+            <NavigationLinks>
+                {navigationLinks.map((link) => {
+                    return (
+                        <NavigationLink key={link.text}>
+                            <Link to={link.path}>{link.text}</Link>
+                        </NavigationLink>
+                    );
+                })}
+            </NavigationLinks>
+
+            <LogoutButton>
+                <Button variant='danger'>Logout</Button>
+            </LogoutButton>
         </Bar>
     );
 };
 
+const NavigationLinks = styled.div`
+    font-size: 18px;
+    padding: 30px;
+
+    & a {
+        color: #6a7380;
+        text-decoration: none;
+    }
+`;
+
+const NavigationLink = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
+
 const Bar = styled.div`
     left: 0;
-    width: 200px;
+    width: 220px;
     position: fixed;
     height: fit-content;
     min-height: 100vh;
@@ -24,15 +56,26 @@ const Bar = styled.div`
 `;
 
 const Logo = styled.div`
-    height: 200px;
+    height: 140px;
     position: relative;
     top: 0;
     text-align: center;
 
     & img {
         margin-top: 30px;
-        height: 70px;
-        width: 70px;
+        height: 85px;
+        width: 85px;
+    }
+`;
+
+const LogoutButton = styled.div`
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+
+    & button {
+        font-size: 14px;
     }
 `;
 

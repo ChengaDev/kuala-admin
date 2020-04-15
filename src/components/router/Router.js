@@ -30,6 +30,21 @@ const ApplicationRouter = () => {
                 />
                 <Suspense fallback={<KualaLoader />}>
                     <ProtectedRoute exact component={Home} path={routes.home} />
+                    <ProtectedRoute
+                        exact
+                        path={routes.personalInfo}
+                        component={Home}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path={routes.education}
+                        component={Home}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path={routes.experience}
+                        component={Home}
+                    />
                 </Suspense>
                 <Route path='*' component={NotFoundPage} />
             </Switch>

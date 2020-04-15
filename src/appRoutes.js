@@ -1,5 +1,8 @@
 export default {
     home: '/',
     login: '/login',
-    forgotPassword: '/password'
+    forgotPassword: '/password',
+    experience: '/experience',
+    education: '/education',
+    personalInfo: '/personalinfo'
 };
