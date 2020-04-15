@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
+import { useSelector } from 'react-redux';
+import { isAuthenticated as isAuthenticatedSelector } from '../../state/auth/selectors';
 import { Route, Redirect } from 'react-router-dom';
-import auth from '../../auth/Auth';
 // import Layout from '../layout/Layout';
 import routes from '../../appRoutes';
 const Layout = lazy(() =>
@@ -8,11 +9,13 @@ const Layout = lazy(() =>
 );
 
 const ProtectedRoute = ({ component: Component, ...restProps }) => {
+    const isAuthenticated = useSelector(isAuthenticatedSelector);
+
     return (
         <Route
             {...restProps}
             render={(props) => {
-                if (auth.isAuthenticated()) {
+                if (isAuthenticated) {
                     return (
                         <Layout>
                             <Component {...props} />

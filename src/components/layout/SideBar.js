@@ -4,8 +4,15 @@ import logo from '../../images/LOGO_cropped.png';
 import { Button } from 'react-bootstrap';
 import navigationLinks from '../../staticData/navigationLinks';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../state/auth/actions';
 
 const SideBar = () => {
+    const dispatch = useDispatch();
+    const onLogoutClick = () => {
+        dispatch(startLogout());
+    };
+
     return (
         <Bar>
             <Logo>
@@ -23,7 +30,9 @@ const SideBar = () => {
             </NavigationLinks>
 
             <LogoutButton>
-                <Button variant='danger'>Logout</Button>
+                <Button onClick={onLogoutClick} variant='danger'>
+                    Logout
+                </Button>
             </LogoutButton>
         </Bar>
     );

@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
-import { login } from '../../api/kuala-api/users/users';
+import React from 'react';
+import { startLogin } from '../../state/auth/actions';
+import {
+    hasFailed,
+    isFetchingLogin,
+    isAuthenticated as isUserAuthenticated
+} from '../../state/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import styled, { keyframes } from 'styled-components';
 import logo from '../../images/LOGO_cropped.png';
 import { Link, Redirect } from 'react-router-dom';
-import auth from '../../auth/Auth';
 import routes from '../../appRoutes';
 
 const LoginPage = () => {
-    let [isAuthenticated, setIsAuthenticated] = useState(false);
-    let [isLoginFailed, setIsLoginFailed] = useState(false);
-    let [isFetching, setIsFetching] = useState(false);
+    const dispatch = useDispatch();
+    let isFetching = useSelector(isFetchingLogin);
+    let isLoginFailed = useSelector(hasFailed);
+    let isAuthenticated = useSelector(isUserAuthenticated);
 
     const handleLogin = async (email, password) => {
-        setIsFetching(true);
-        setTimeout(async () => {
-            const response = await login(email, password);
-            setIsFetching(false);
-            if (response.status === 200) {
-                auth.login();
-                setIsAuthenticated(true);
-            } else {
-                setIsLoginFailed(true);
-            }
-        }, 1000);
+        dispatch(startLogin({ email, password }));
     };
 
     const redirectToApplication = () => {

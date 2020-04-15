@@ -2,7 +2,7 @@ export default {
     colors: {
         white: '#fff',
         black: '#000',
-        red: '#9dd6fc',
+        red: '#e0561b',
 
         // application colors
         appBackground: '#60cbeb'
