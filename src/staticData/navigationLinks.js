@@ -16,6 +16,10 @@ const navLinks = [
     {
         text: 'Education',
         path: appRoutes.education
+    },
+    {
+        text: 'Skills',
+        path: appRoutes.education
     }
 ];
 

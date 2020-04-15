@@ -7,6 +7,8 @@ import { createBrowserHistory } from 'history';
 import ProtectedRoute from './ProtectedRoute';
 import routes from '../../appRoutes';
 import KualaLoader from '../layout/KualaLoader';
+import ErrorBoundary from '../errors/ErrorBoundery';
+
 const Home = lazy(() => {
     return new Promise((resolve) => {
         setTimeout(
@@ -21,33 +23,42 @@ const ApplicationRouter = () => {
     const history = createBrowserHistory();
     return (
         <Router history={history}>
-            <Switch>
-                <Route exact component={LoginPage} path={routes.login} />
-                <Route
-                    exact
-                    component={PasswordRecoveryPage}
-                    path={routes.forgotPassword}
-                />
-                <Suspense fallback={<KualaLoader />}>
-                    <ProtectedRoute exact component={Home} path={routes.home} />
-                    <ProtectedRoute
+            <ErrorBoundary>
+                <Switch>
+                    <Route exact component={LoginPage} path={routes.login} />
+                    <Route
                         exact
-                        path={routes.personalInfo}
-                        component={Home}
+                        component={PasswordRecoveryPage}
+                        path={routes.forgotPassword}
                     />
-                    <ProtectedRoute
-                        exact
-                        path={routes.education}
-                        component={Home}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path={routes.experience}
-                        component={Home}
-                    />
-                </Suspense>
-                <Route path='*' component={NotFoundPage} />
-            </Switch>
+                    <Suspense fallback={<KualaLoader />}>
+                        <ProtectedRoute
+                            exact
+                            component={Home}
+                            path={routes.home}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path={routes.personalInfo}
+                            component={Home}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path={routes.education}
+                            component={Home}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path={routes.experience}
+                            component={Home}
+                        />
+                        <Route
+                            path={routes.notFound}
+                            component={NotFoundPage}
+                        />
+                    </Suspense>
+                </Switch>
+            </ErrorBoundary>
         </Router>
     );
 };

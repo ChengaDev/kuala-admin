@@ -2,7 +2,7 @@ export default {
     auth: {
         user: null,
         token: null,
-        isFetching: false,
+        isFetchingLogin: false,
         hasFailed: false,
         isAuthenticated: false
     }

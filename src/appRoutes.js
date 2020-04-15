@@ -4,5 +4,6 @@ export default {
     forgotPassword: '/password',
     experience: '/experience',
     education: '/education',
-    personalInfo: '/personalinfo'
+    personalInfo: '/personalinfo',
+    notFound: '/notfound'
 };
