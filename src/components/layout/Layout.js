@@ -1,18 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import SideBar from './SideBar';
+import { isMobileOnly } from 'react-device-detect';
 
 const Layout = ({ children }) => {
     return (
         <>
-            <SideBar />
-            <Content>{children}</Content>
+            {!isMobileOnly && <SideBar />}
+            <Content isMobile={isMobileOnly}>{children}</Content>
         </>
     );
 };
 
 const Content = styled.div`
     height: 100vh;
+    margin-left: ${(props) => (props.isMobile ? '0' : '220px')};
+
+    @media screen and (min-width: 1400px) {
+        margin-left: 280px;
+    }
 `;
 
 export default Layout;

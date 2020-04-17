@@ -19,6 +19,18 @@ const navLinks = [
     },
     {
         text: 'Skills',
+        path: appRoutes.skills
+    },
+    {
+        text: 'Recommendations',
+        path: appRoutes.recommendations
+    },
+    {
+        text: 'Achievmemets',
+        path: appRoutes.achievmemets
+    },
+    {
+        text: 'Projects',
         path: appRoutes.education
     }
 ];

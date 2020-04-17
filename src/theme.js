@@ -5,8 +5,7 @@ export default {
         red: '#e0561b',
 
         // application colors
-        appBackground: '#60cbeb'
-        // '#a9dbfc'
+        appBackground: '#b0bdd4'
     },
     fontSizes: {
         inputValidationMessage: '15px'

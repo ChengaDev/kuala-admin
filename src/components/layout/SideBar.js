@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../../images/LOGO_cropped.png';
+import logo from '../../images/LOGO_4.png';
 import { Button } from 'react-bootstrap';
 import navigationLinks from '../../staticData/navigationLinks';
 import { Link } from 'react-router-dom';
@@ -27,13 +27,12 @@ const SideBar = () => {
                         </NavigationLink>
                     );
                 })}
+                <LogoutButton>
+                    <Button onClick={onLogoutClick} variant='link'>
+                        Logout
+                    </Button>
+                </LogoutButton>
             </NavigationLinks>
-
-            <LogoutButton>
-                <Button onClick={onLogoutClick} variant='danger'>
-                    Logout
-                </Button>
-            </LogoutButton>
         </Bar>
     );
 };
@@ -41,6 +40,16 @@ const SideBar = () => {
 const NavigationLinks = styled.div`
     font-size: 18px;
     padding: 30px;
+    position: relative;
+    top: 30px;
+
+    @media screen and (min-width: 1400px) {
+        font-size: 21px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        font-size: 16px;
+    }
 
     & a {
         color: #6a7380;
@@ -51,6 +60,11 @@ const NavigationLinks = styled.div`
 const NavigationLink = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
+
+    &:hover {
+        transition: font-weight 0.1s linear;
+        font-weight: bold;
+    }
 `;
 
 const Bar = styled.div`
@@ -62,6 +76,10 @@ const Bar = styled.div`
     background-color: #f1f1f1;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2),
         0 4px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media screen and (min-width: 1400px) {
+        width: 280px;
+    }
 `;
 
 const Logo = styled.div`
@@ -71,20 +89,28 @@ const Logo = styled.div`
     text-align: center;
 
     & img {
-        margin-top: 30px;
-        height: 85px;
-        width: 85px;
+        height: 200px;
+        width: 200px;
     }
 `;
 
 const LogoutButton = styled.div`
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     & button {
-        font-size: 14px;
+        padding: 0;
+        font-size: 18px;
+        color: red !important;
+        text-decoration: none !important;
+
+        @media screen and (min-width: 1400px) {
+            font-size: 24px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            font-size: 16px;
+        }
     }
 `;
 
