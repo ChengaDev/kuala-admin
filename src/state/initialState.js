@@ -5,7 +5,7 @@ export default {
         token: null,
         isFetchingLogin: false,
         hasFailed: false,
-        // isAuthenticated: false
+        // isAuthenticated: false,
         isAuthenticated: true
     }
 };

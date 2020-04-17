@@ -19,6 +19,20 @@ const Home = lazy(() => {
     });
 });
 
+const PersonalInfo = lazy(() => {
+    return new Promise((resolve) => {
+        setTimeout(
+            () =>
+                resolve(
+                    import(
+                        /* webpackChunkName: "personalInfo" */ '../personalInfo/PersonalInfoWizard'
+                    )
+                ),
+            1000
+        );
+    });
+});
+
 const ApplicationRouter = () => {
     const history = createBrowserHistory();
     return (
@@ -40,7 +54,7 @@ const ApplicationRouter = () => {
                         <ProtectedRoute
                             exact
                             path={routes.personalInfo}
-                            component={Home}
+                            component={PersonalInfo}
                         />
                         <ProtectedRoute
                             exact

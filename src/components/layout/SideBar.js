@@ -38,7 +38,6 @@ const SideBar = () => {
 };
 
 const NavigationLinks = styled.div`
-    font-size: 18px;
     padding: 30px;
     position: relative;
     top: 30px;
@@ -50,16 +49,16 @@ const NavigationLinks = styled.div`
     @media screen and (max-width: 1200px) {
         font-size: 16px;
     }
-
-    & a {
-        color: #6a7380;
-        text-decoration: none;
-    }
 `;
 
 const NavigationLink = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
+
+    & a {
+        color: ${(props) => props.theme.colors.grayFont};
+        text-decoration: none;
+    }
 
     &:hover {
         transition: font-weight 0.1s linear;
@@ -101,7 +100,7 @@ const LogoutButton = styled.div`
     & button {
         padding: 0;
         font-size: 18px;
-        color: red !important;
+        color: ${(props) => props.theme.colors.red};
         text-decoration: none !important;
 
         @media screen and (min-width: 1400px) {
