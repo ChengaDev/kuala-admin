@@ -39,13 +39,13 @@ const SideBar = () => {
 
 const NavigationLinks = styled.div`
     text-align: center;
-    font-size: 18px;
-    padding: 30px;
+    font-size: 20px;
+
     position: relative;
     top: 30px;
 
     @media screen and (max-width: 1400px) {
-        font-size: 15px;
+        font-size: 18px;
     }
 `;
 
@@ -85,8 +85,8 @@ const Logo = styled.div`
     text-align: center;
 
     & img {
-        height: 200px;
-        width: 200px;
+        height: 150px;
+        width: 150px;
     }
 `;
 
