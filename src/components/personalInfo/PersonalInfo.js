@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { user as userSelector } from '../../state/auth/selectors';
+// import { useSelector } from 'react-redux';
+// import { user as userSelector } from '../../state/auth/selectors';
 import styled from 'styled-components';
 
 const PersonalInfo = () => {
-    const user = useSelector(userSelector);
+    // const user = useSelector(userSelector);
 
     return <PersonalInfoPage></PersonalInfoPage>;
 };

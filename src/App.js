@@ -1,7 +1,7 @@
 import React from 'react';
-import ApplicationRouter from './router/Router';
+import ApplicationRouter from './components/router/Router';
 import { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import theme from './theme';
 
 function App() {
     return (
