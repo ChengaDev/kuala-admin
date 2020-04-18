@@ -1,11 +1,9 @@
 export default {
     auth: {
-        // user: null,
-        user: { firstname: 'Chen' },
+        user: null,
         token: null,
         isFetchingLogin: false,
         hasFailed: false,
-        // isAuthenticated: false,
-        isAuthenticated: true
+        isAuthenticated: false
     }
 };

@@ -38,12 +38,13 @@ const SideBar = () => {
 };
 
 const NavigationLinks = styled.div`
+    font-size: 18px;
     padding: 30px;
     position: relative;
     top: 30px;
 
     @media screen and (min-width: 1400px) {
-        font-size: 21px;
+        font-size: 24px;
     }
 
     @media screen and (max-width: 1200px) {

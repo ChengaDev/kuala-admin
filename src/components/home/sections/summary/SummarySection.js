@@ -26,10 +26,10 @@ const SummarySection = ({ user, summaryData, isMoblie }) => {
                     {summaryData.map((summaryItem) => {
                         return (
                             <SummaryBox
+                                key={summaryItem.title}
                                 isLoading={false}
                                 title={summaryItem.title}
                                 data={summaryItem.data}
-                                path={null}
                             />
                         );
                     })}

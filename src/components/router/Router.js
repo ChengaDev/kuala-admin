@@ -25,7 +25,7 @@ const PersonalInfo = lazy(() => {
             () =>
                 resolve(
                     import(
-                        /* webpackChunkName: "personalInfo" */ '../personalInfo/PersonalInfoWizard'
+                        /* webpackChunkName: "personalInfo" */ '../personalInfo/PersonalInfo'
                     )
                 ),
             1000
