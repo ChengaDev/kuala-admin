@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
 };
 
 const Content = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     margin-left: ${(props) => (props.isMobile ? '0' : '220px')};
 
     @media screen and (min-width: 1400px) {

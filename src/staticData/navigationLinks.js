@@ -18,10 +18,6 @@ const navLinks = [
         path: appRoutes.education
     },
     {
-        text: 'Skills',
-        path: appRoutes.skills
-    },
-    {
         text: 'Recommendations',
         path: appRoutes.recommendations
     },
@@ -32,6 +28,10 @@ const navLinks = [
     {
         text: 'Projects',
         path: appRoutes.education
+    },
+    {
+        text: 'Skills',
+        path: appRoutes.skills
     }
 ];
 
