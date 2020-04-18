@@ -42,7 +42,7 @@ const NavigationLinks = styled.div`
     font-size: 20px;
 
     position: relative;
-    top: 30px;
+    top: 10px;
 
     @media screen and (max-width: 1400px) {
         font-size: 18px;
@@ -50,8 +50,8 @@ const NavigationLinks = styled.div`
 `;
 
 const NavigationLink = styled.div`
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 
     & a {
         color: ${(props) => props.theme.colors.grayFont};
@@ -91,8 +91,8 @@ const Logo = styled.div`
 `;
 
 const LogoutButton = styled.div`
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-top: 12px;
 
     & button {
         padding: 0;
@@ -101,7 +101,7 @@ const LogoutButton = styled.div`
         text-decoration: none !important;
 
         @media screen and (max-width: 1400px) {
-            font-size: 15px;
+            font-size: 18px;
         }
     }
 `;

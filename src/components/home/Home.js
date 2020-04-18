@@ -35,7 +35,7 @@ const Home = () => {
 const Page = styled.div`
     padding: 30px;
     background-color: ${(props) => props.theme.colors.appBackground};
-    min-height: 100%;
+    min-height: 100vh;
 `;
 
 export default Home;
