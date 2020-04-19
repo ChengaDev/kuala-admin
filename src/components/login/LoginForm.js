@@ -2,16 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-
-const validationSchema = Yup.object({
-    email: Yup.string()
-        .email('Please insert valid email')
-        .required('Please insert your email'),
-    password: Yup.string()
-        .required('Please insert you password')
-        .min(8, 'Minimum 8 chearacters')
-});
+import { validationSchema } from '../../validationSchemas/LoginForm';
 
 const LoginForm = ({ onSubmit, isFetching }) => {
     return (
