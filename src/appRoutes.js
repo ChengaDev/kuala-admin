@@ -7,7 +7,7 @@ export default {
     personalInfo: '/personalinfo',
     skills: './skills',
     projects: '/projects',
-    achievmemets: '/achievmemets',
+    achievments: '/achievments',
     recommendations: '/recommendations',
     notFound: '/notfound'
 };

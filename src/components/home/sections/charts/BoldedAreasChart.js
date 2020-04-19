@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Chart from 'react-google-charts';
+import localization from '../../../../localization/home/sections/charts/BoldedAreasChart';
 
 const BoldedAreasChart = () => {
+    localization.setLanguage('en');
+
     return (
         <>
-            <ChartTitle>Leading areas</ChartTitle>
+            <ChartTitle>{localization.title}</ChartTitle>
             <Chart
                 chartType='ColumnChart'
                 height='220px'

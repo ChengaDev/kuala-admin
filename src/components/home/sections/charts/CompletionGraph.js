@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Chart from 'react-google-charts';
+import localization from '../../../../localization/home/sections/charts/CompletionGraph';
 
 const CompletionGraph = () => {
+    localization.setLanguage('en');
+
     return (
         <>
-            <ChartTitle>Resume components</ChartTitle>
+            <ChartTitle>{localization.title}</ChartTitle>
             <Chart
                 height='220px'
                 chartType='PieChart'

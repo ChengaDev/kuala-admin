@@ -6,20 +6,23 @@ import PersonalInfoBox from './PersonalInfoBox';
 import appRoutes from '../../../../appRoutes';
 import { FadeInAnimation } from '../../../Animations';
 import logo from '../../../../images/LOGO_cropped.png';
+import localization from '../../../../localization/home/sections/summary/SummarySection';
 
 const SummarySection = ({ user, summaryData, isMoblie }) => {
+    localization.setLanguage('en');
+
     const renderSummaryBoxes = () => {
         return (
             <>
                 <Row>
                     <SummaryTitle isMobile={isMoblie}>
-                        Your resume contains
+                        {localization.summaryTitle}
                     </SummaryTitle>
                 </Row>
                 <Row>
                     <PersonalInfoBox
                         isLoading={false}
-                        title='Personal Info'
+                        title={localization.personalInfo}
                         data='X'
                         path={appRoutes.personalInfo}
                     />

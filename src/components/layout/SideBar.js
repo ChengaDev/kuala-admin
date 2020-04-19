@@ -2,16 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../../images/LOGO_4.png';
 import { Button } from 'react-bootstrap';
-import navigationLinks from '../../staticData/navigationLinks';
+import getNavigationLinks from '../../staticData/navigationLinks';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { startLogout } from '../../state/auth/actions';
+import localization from '../../localization/layout/SideBar';
 
 const SideBar = () => {
+    localization.setLanguage('en');
+
     const dispatch = useDispatch();
     const onLogoutClick = () => {
         dispatch(startLogout());
     };
+
+    const navigationLinks = getNavigationLinks(localization.links);
 
     return (
         <Bar>
@@ -29,7 +34,7 @@ const SideBar = () => {
                 })}
                 <LogoutButton>
                     <Button onClick={onLogoutClick} variant='link'>
-                        Logout
+                        {localization.links.logout}
                     </Button>
                 </LogoutButton>
             </NavigationLinks>

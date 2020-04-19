@@ -1,38 +1,40 @@
 import appRoutes from '../appRoutes';
 
-const navLinks = [
-    {
-        text: 'Home',
-        path: appRoutes.home
-    },
-    {
-        text: 'Personal info',
-        path: appRoutes.personalInfo
-    },
-    {
-        text: 'Work experience',
-        path: appRoutes.experience
-    },
-    {
-        text: 'Education',
-        path: appRoutes.education
-    },
-    {
-        text: 'Recommendations',
-        path: appRoutes.recommendations
-    },
-    {
-        text: 'Achievmemets',
-        path: appRoutes.achievmemets
-    },
-    {
-        text: 'Projects',
-        path: appRoutes.education
-    },
-    {
-        text: 'Skills',
-        path: appRoutes.skills
-    }
-];
+const getNavigationLinks = (localization) => {
+    return [
+        {
+            text: localization.home,
+            path: appRoutes.home
+        },
+        {
+            text: localization.personalInfo,
+            path: appRoutes.personalInfo
+        },
+        {
+            text: localization.experience,
+            path: appRoutes.experience
+        },
+        {
+            text: localization.education,
+            path: appRoutes.education
+        },
+        {
+            text: localization.recommendations,
+            path: appRoutes.recommendations
+        },
+        {
+            text: localization.achievments,
+            path: appRoutes.achievments
+        },
+        {
+            text: localization.projects,
+            path: appRoutes.projects
+        },
+        {
+            text: localization.skills,
+            path: appRoutes.skills
+        }
+    ];
+};
 
-export default navLinks;
+export default getNavigationLinks;

@@ -9,6 +9,7 @@
         "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
         "formik": "^2.1.4",
+        "localized-strings": "^0.2.4",
         "react": "^16.13.1",
         "react-animations": "^1.0.0",
         "react-app-polyfill": "^1.0.6",
