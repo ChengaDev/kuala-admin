@@ -6,7 +6,6 @@ import PersonalInfoBox from './PersonalInfoBox';
 import appRoutes from '../../../../appRoutes';
 import { FadeInAnimation } from '../../../Animations';
 import logo from '../../../../images/LOGO_cropped.png';
-import localization from '../../../../localization/home/sections/summary/SummarySection';
 
 const SummarySection = ({ user, summaryData, isMoblie, localization }) => {
     const renderSummaryBoxes = () => {
