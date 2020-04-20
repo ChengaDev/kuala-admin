@@ -4,18 +4,19 @@ import logo from '../../images/LOGO_4.png';
 import { Button } from 'react-bootstrap';
 import getNavigationLinks from '../../staticData/navigationLinks';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../state/auth/actions';
-import localization from '../../localization/layout/SideBar';
+import { sideBarLocalization } from '../../state/localization/selectors';
+import LanguageSelector from '../common/LanguageSelector';
 
 const SideBar = () => {
-    localization.setLanguage('en');
-
     const dispatch = useDispatch();
+
     const onLogoutClick = () => {
         dispatch(startLogout());
     };
 
+    const localization = useSelector(sideBarLocalization);
     const navigationLinks = getNavigationLinks(localization.links);
 
     return (
@@ -38,6 +39,7 @@ const SideBar = () => {
                     </Button>
                 </LogoutButton>
             </NavigationLinks>
+            <LanguageSelector />
         </Bar>
     );
 };
@@ -98,6 +100,7 @@ const Logo = styled.div`
 const LogoutButton = styled.div`
     font-size: 20px;
     margin-top: 12px;
+    margin-bottom: 30px;
 
     & button {
         padding: 0;

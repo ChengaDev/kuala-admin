@@ -1,6 +1,4 @@
-import LocalizedStrings from 'localized-strings';
-
-export default new LocalizedStrings({
+export default {
     en: {
         links: {
             home: 'Home',
@@ -27,4 +25,4 @@ export default new LocalizedStrings({
             logout: 'התנתק'
         }
     }
-});
+};

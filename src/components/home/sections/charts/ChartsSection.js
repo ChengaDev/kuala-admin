@@ -6,7 +6,7 @@ import BoldedAreasChart from './BoldedAreasChart';
 import { FadeInAnimation } from '../../../Animations';
 import logo from '../../../../images/LOGO_cropped.png';
 
-const ChartsSection = ({ summaryData }) => {
+const ChartsSection = ({ summaryData, localization }) => {
     const renderLoader = () => {
         return (
             <Logo>
@@ -17,7 +17,12 @@ const ChartsSection = ({ summaryData }) => {
 
     const renderCompletionChart = () => {
         if (summaryData) {
-            return <CompletionGraph summaryData={summaryData} />;
+            return (
+                <CompletionGraph
+                    localization={localization.completionGraph}
+                    summaryData={summaryData}
+                />
+            );
         } else {
             return renderLoader();
         }
@@ -25,7 +30,12 @@ const ChartsSection = ({ summaryData }) => {
 
     const renderBoldedAreasChart = () => {
         if (summaryData) {
-            return <BoldedAreasChart summaryData={summaryData} />;
+            return (
+                <BoldedAreasChart
+                    localization={localization.boldedAreasChart}
+                    summaryData={summaryData}
+                />
+            );
         } else {
             return renderLoader();
         }

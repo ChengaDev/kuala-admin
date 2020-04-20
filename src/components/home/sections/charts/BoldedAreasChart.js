@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Chart from 'react-google-charts';
-import localization from '../../../../localization/home/sections/charts/BoldedAreasChart';
 
-const BoldedAreasChart = () => {
-    localization.setLanguage('en');
-
+const BoldedAreasChart = ({ localization }) => {
     return (
         <>
             <ChartTitle>{localization.title}</ChartTitle>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { user as userSelector } from '../../state/auth/selectors';
+import { homeLocalization } from '../../state/localization/selectors';
 import { isMobileOnly } from 'react-device-detect';
 import SummarySection from './sections/summary/SummarySection';
 import ChartsSection from './sections/charts/ChartsSection';
@@ -9,6 +10,8 @@ import { loadSummary } from '../../api/kuala-api/summary/summary';
 
 const Home = () => {
     const user = useSelector(userSelector);
+    const localization = useSelector(homeLocalization);
+
     let [summaryData, setSummaryData] = useState(null);
 
     useEffect(() => {
@@ -26,8 +29,14 @@ const Home = () => {
                 summaryData={summaryData}
                 user={user}
                 isMobile={isMobileOnly}
+                localization={localization.summary}
             />
-            {!isMobileOnly && <ChartsSection summaryData={summaryData} />}
+            {!isMobileOnly && (
+                <ChartsSection
+                    localization={localization.charts}
+                    summaryData={summaryData}
+                />
+            )}
         </Page>
     );
 };

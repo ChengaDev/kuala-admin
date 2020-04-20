@@ -5,18 +5,21 @@ import {
     isFetchingLogin,
     isAuthenticated as isUserAuthenticated
 } from '../../state/auth/selectors';
+import { loginLocalization } from '../../state/localization/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import styled, { keyframes } from 'styled-components';
 import logo from '../../images/LOGO_cropped.png';
 import { Link, Redirect } from 'react-router-dom';
 import routes from '../../appRoutes';
+import LanguageSelector from '../common/LanguageSelector';
 
 const LoginPage = () => {
     const dispatch = useDispatch();
     let isFetching = useSelector(isFetchingLogin);
     let isLoginFailed = useSelector(hasFailed);
     let isAuthenticated = useSelector(isUserAuthenticated);
+    let localization = useSelector(loginLocalization);
 
     const handleLogin = async (email, password) => {
         dispatch(startLogin({ email, password }));
@@ -30,22 +33,29 @@ const LoginPage = () => {
         return (
             <LoginPageWrapper>
                 <LoginBox>
-                    <h2>Login</h2>
+                    <h2>{localization.title}</h2>
                     <Logo>
                         <img height='80' width='80' src={logo} alt='logo' />
                     </Logo>
-                    <LoginForm isFetching={isFetching} onSubmit={handleLogin} />
+                    <LoginForm
+                        isFetching={isFetching}
+                        onSubmit={handleLogin}
+                        localization={localization.form}
+                    />
                     {isLoginFailed && (
                         <LoginFailedMessage>
-                            Login failed, please try again
+                            {localization.form.errors.loginFailed}
                         </LoginFailedMessage>
                     )}
                 </LoginBox>
                 <ForgotPassword>
                     <Link to={routes.forgotPassword}>
-                        Forgot your password?
+                        {localization.forgotPasswordButton}
                     </Link>
                 </ForgotPassword>
+                <LanguageSelection>
+                    <LanguageSelector />
+                </LanguageSelection>
             </LoginPageWrapper>
         );
     };
@@ -94,6 +104,14 @@ const LoginPageWrapper = styled.div`
     min-height: 100vh;
     background-color: ${(props) => props.theme.colors.appBackground};
     width: 100%;
+
+    /* & input {
+        direction: rtl;
+    }
+
+    & label {
+        float: right;
+    } */
 `;
 
 const ForgotPassword = styled.div`
@@ -107,6 +125,12 @@ const ForgotPassword = styled.div`
         top: 11.5vh;
         text-decoration: none !important;
     }
+`;
+
+const LanguageSelection = styled.div`
+    animation: ${FadeInAnimation} 1s;
+    position: relative;
+    top: 12vh;
 `;
 
 const LoginFailedMessage = styled.div`

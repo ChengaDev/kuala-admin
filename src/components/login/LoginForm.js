@@ -4,12 +4,14 @@ import { Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { validationSchema } from '../../validationSchemas/LoginForm';
 
-const LoginForm = ({ onSubmit, isFetching }) => {
+const LoginForm = ({ onSubmit, isFetching, localization }) => {
+    const formValidationSchema = validationSchema(localization);
+
     return (
         <FormWrapper>
             <Formik
                 onSubmit={(values) => onSubmit(values.email, values.password)}
-                validationSchema={validationSchema}
+                validationSchema={formValidationSchema}
                 initialValues={{
                     email: '',
                     password: ''
@@ -18,13 +20,13 @@ const LoginForm = ({ onSubmit, isFetching }) => {
                 {({ handleSubmit, values, handleChange, touched, errors }) => (
                     <Form noValidate onSubmit={handleSubmit}>
                         <Form.Group controlId='validationFormikEmail'>
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>{localization.email.label}</Form.Label>
                             <Form.Control
                                 onChange={handleChange}
                                 value={values.email}
                                 type='email'
                                 name='email'
-                                placeholder='Enter email'
+                                placeholder={localization.email.placeholder}
                                 isValid={touched.email && !errors.email}
                                 isInvalid={!!errors.email}
                             />
@@ -37,7 +39,9 @@ const LoginForm = ({ onSubmit, isFetching }) => {
                         </Form.Group>
 
                         <Form.Group controlId='validationFormikPassword'>
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>
+                                {localization.password.label}
+                            </Form.Label>
                             <Form.Control
                                 onChange={handleChange}
                                 type='password'

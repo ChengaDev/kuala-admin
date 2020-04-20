@@ -1,6 +1,4 @@
-import LocalizedStrings from 'localized-strings';
-
-export default new LocalizedStrings({
+export default {
     en: {
         personalInfo: 'Personal details',
         summaryTitle: 'Your resume contains'
@@ -9,4 +7,4 @@ export default new LocalizedStrings({
         personalInfo: 'פרטים אישיים',
         summaryTitle: 'קורות החיים שלך מכילים'
     }
-});
+};
