@@ -14,7 +14,7 @@ const localizedTexts = createSelector(
     currentLanguage,
     (allLocalization, currentLanguage) => {
         const localsObject = new LocalizedStrings(allLocalization);
-        localsObject.setLanguage(currentLanguage);
+        localsObject.setLanguage(currentLanguage.symbol);
         return localsObject;
     }
 );

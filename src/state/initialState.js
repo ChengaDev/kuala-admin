@@ -1,4 +1,5 @@
 import localization from '../localization/localization';
+import { eLanguage } from '../staticData/language';
 
 export default {
     auth: {
@@ -16,6 +17,6 @@ export default {
     },
     localization: {
         texts: localization,
-        currentLanguage: 'en'
+        currentLanguage: eLanguage.English
     }
 };
