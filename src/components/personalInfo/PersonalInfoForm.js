@@ -4,13 +4,20 @@ import { Formik } from 'formik';
 import { Button, Form, Col } from 'react-bootstrap';
 import { FadeInAnimation } from '../Animations';
 import { validationSchema } from '../../validationSchemas/PersonalInfoForm';
+import { eLanguageDirection } from '../../staticData/language';
 
-const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
+const PersonalInfoForm = ({
+    user,
+    isFetching,
+    onSubmit,
+    localization,
+    currentLanguage
+}) => {
     return (
-        <FormWrapper>
+        <FormWrapper currentLanguage={currentLanguage}>
             <Formik
                 onSubmit={(values) => onSubmit(values.email, values.password)}
-                validationSchema={validationSchema}
+                validationSchema={validationSchema(localization)}
                 initialValues={{
                     firstname: user.firstname,
                     lastname: user.lastname,
@@ -23,19 +30,25 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
             >
                 {({ handleSubmit, values, handleChange, touched, errors }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                        <GroupTitle>Who are you?</GroupTitle>
+                        <GroupTitle direction={currentLanguage.direction}>
+                            {localization.firstSectionTitle}
+                        </GroupTitle>
                         <InputGroup>
                             <Form.Row>
                                 <Form.Group
                                     as={Col}
                                     controlId='validationFormikFirstname'
                                 >
-                                    <Form.Label>First name</Form.Label>
+                                    <Form.Label>
+                                        {localization.firstname.label}
+                                    </Form.Label>
                                     <Form.Control
                                         onChange={handleChange}
                                         value={values.firstname}
                                         type='text'
-                                        name='firstname'
+                                        name={
+                                            localization.firstname.placeholder
+                                        }
                                         placeholder=''
                                         isValid={
                                             touched.firstname &&
@@ -44,7 +57,7 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                         isInvalid={!!errors.firstname}
                                     />
                                     <Form.Control.Feedback type='valid'>
-                                        Looks good!
+                                        {localization.validInputHint}
                                     </Form.Control.Feedback>
                                     <Form.Control.Feedback type='invalid'>
                                         {errors.firstname}
@@ -55,20 +68,24 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                     as={Col}
                                     controlId='validationFormikLastname'
                                 >
-                                    <Form.Label>Last name</Form.Label>
+                                    <Form.Label>
+                                        {localization.lastname.label}
+                                    </Form.Label>
                                     <Form.Control
                                         onChange={handleChange}
                                         value={values.lastname}
                                         type='text'
                                         name='lastname'
-                                        placeholder=''
+                                        placeholder={
+                                            localization.lastname.placeholder
+                                        }
                                         isValid={
                                             touched.lastname && !errors.lastname
                                         }
                                         isInvalid={!!errors.lastname}
                                     />
                                     <Form.Control.Feedback type='valid'>
-                                        Looks good!
+                                        {localization.validInputHint}
                                     </Form.Control.Feedback>
                                     <Form.Control.Feedback type='invalid'>
                                         {errors.lastname}
@@ -76,20 +93,24 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                 </Form.Group>
                             </Form.Row>
                             <Form.Group controlId='validationFormikUsername'>
-                                <Form.Label>Username</Form.Label>
+                                <Form.Label>
+                                    {localization.username.label}
+                                </Form.Label>
                                 <Form.Control
                                     onChange={handleChange}
                                     value={values.username}
                                     type='text'
                                     name='username'
-                                    placeholder=''
+                                    placeholder={
+                                        localization.username.placeholder
+                                    }
                                     isValid={
                                         touched.username && !errors.username
                                     }
                                     isInvalid={!!errors.username}
                                 />
                                 <Form.Control.Feedback type='valid'>
-                                    Looks good!
+                                    {localization.validInputHint}
                                 </Form.Control.Feedback>
                                 <Form.Control.Feedback type='invalid'>
                                     {errors.username}
@@ -97,20 +118,24 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                             </Form.Group>
 
                             <Form.Group controlId='validationFormikBirthdate'>
-                                <Form.Label>Date of birth</Form.Label>
+                                <Form.Label>
+                                    {localization.birthdate.label}
+                                </Form.Label>
                                 <Form.Control
                                     onChange={handleChange}
                                     value={values.birthdate}
                                     type='date'
                                     name='birthdate'
-                                    placeholder=''
+                                    placeholder={
+                                        localization.birthdate.placeholder
+                                    }
                                     isValid={
                                         touched.birthdate && !errors.birthdate
                                     }
                                     isInvalid={!!errors.birthdate}
                                 />
                                 <Form.Control.Feedback type='valid'>
-                                    Looks good!
+                                    {localization.validInputHint}
                                 </Form.Control.Feedback>
                                 <Form.Control.Feedback type='invalid'>
                                     {errors.birthdate}
@@ -118,17 +143,21 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                             </Form.Group>
                         </InputGroup>
 
-                        <GroupTitle>How to get you?</GroupTitle>
+                        <GroupTitle direction={currentLanguage.direction}>
+                            {localization.secondSectionTitle}
+                        </GroupTitle>
                         <InputGroup>
                             <Form.Group controlId='validationFormikEmail'>
-                                <Form.Label>Email</Form.Label>
+                                <Form.Label>
+                                    {localization.email.label}
+                                </Form.Label>
                                 <Form.Control
                                     readOnly
                                     defaultValue={values.email}
                                     value={user.email}
                                 />
                                 <Form.Control.Feedback type='valid'>
-                                    Looks good!
+                                    {localization.validInputHint}
                                 </Form.Control.Feedback>
                                 <Form.Control.Feedback type='invalid'>
                                     {errors.email}
@@ -139,18 +168,22 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                     as={Col}
                                     controlId='validationFormikCity'
                                 >
-                                    <Form.Label>City</Form.Label>
+                                    <Form.Label>
+                                        {localization.city.label}
+                                    </Form.Label>
                                     <Form.Control
                                         onChange={handleChange}
                                         value={values.city}
                                         type='text'
                                         name='city'
-                                        placeholder='Enter your city'
+                                        placeholder={
+                                            localization.city.placeholder
+                                        }
                                         isValid={touched.email && !errors.city}
                                         isInvalid={!!errors.city}
                                     />
                                     <Form.Control.Feedback type='valid'>
-                                        Looks good!
+                                        {localization.validInputHint}
                                     </Form.Control.Feedback>
                                     <Form.Control.Feedback type='invalid'>
                                         {errors.city}
@@ -161,18 +194,22 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                     as={Col}
                                     controlId='validationFormikState'
                                 >
-                                    <Form.Label>State</Form.Label>
+                                    <Form.Label>
+                                        {localization.state.label}
+                                    </Form.Label>
                                     <Form.Control
                                         onChange={handleChange}
                                         value={values.state}
                                         type='text'
                                         name='state'
-                                        placeholder='Enter your state'
+                                        placeholder={
+                                            localization.state.placeholder
+                                        }
                                         isValid={touched.state && !errors.state}
                                         isInvalid={!!errors.state}
                                     />
                                     <Form.Control.Feedback type='valid'>
-                                        Looks good!
+                                        {localization.validInputHint}
                                     </Form.Control.Feedback>
                                     <Form.Control.Feedback type='invalid'>
                                         {errors.city}
@@ -186,7 +223,9 @@ const PersonalInfoForm = ({ user, isFetching, onSubmit }) => {
                                 variant='primary'
                                 type='submit'
                             >
-                                {isFetching ? 'I`m on it...' : 'Update'}
+                                {isFetching
+                                    ? localization.submitButton.processing
+                                    : localization.submitButton.idle}
                             </Button>
                         </ButtonWrapper>
                     </Form>
@@ -201,10 +240,28 @@ const GroupTitle = styled.div`
     font-size: 40px;
     margin-bottom: 30px;
     color: ${(props) => props.theme.colors.white};
+    direction: ${(props) => props.direction};
 `;
 
 const FormWrapper = styled.div`
     animation: ${FadeInAnimation} 2s;
+
+    ${(props) =>
+        props.currentLanguage.direction === eLanguageDirection.RightToLeft &&
+        `
+        div[class$="feedback"] {
+            text-align: right;
+            direction: rtl;
+        }
+
+        & input {
+            direction: rtl;
+        }
+
+        & label {
+            float: right;
+        }
+    `};
 `;
 
 const InputGroup = styled.div`

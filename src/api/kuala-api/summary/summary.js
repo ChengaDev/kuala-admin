@@ -1,32 +1,14 @@
 export const loadSummary = () => {
     var promise = new Promise(function (resolve, reject) {
         setTimeout(function () {
-            resolve([
-                {
-                    title: 'Skills',
-                    data: '3'
-                },
-                {
-                    title: 'Projects',
-                    data: '0'
-                },
-                {
-                    title: 'Recommendations',
-                    data: '2'
-                },
-                {
-                    title: 'Achievments',
-                    data: '0'
-                },
-                {
-                    title: 'Experience',
-                    data: '1'
-                },
-                {
-                    title: 'Education',
-                    data: '2'
-                }
-            ]);
+            resolve({
+                skills: 3,
+                projects: 0,
+                recommendations: 2,
+                achievments: 0,
+                experience: 1,
+                education: 2
+            });
         }, 2000);
     });
     return promise;

@@ -1,7 +1,7 @@
 import LocalizedStrings from 'localized-strings';
 import { createSelector } from 'reselect';
 
-const currentLanguage = (state) => {
+export const currentLanguage = (state) => {
     return state.localization.currentLanguage;
 };
 
@@ -40,8 +40,16 @@ export const loginLocalization = createSelector(
     }
 );
 
+export const personalInfoLocalization = createSelector(
+    localizedTexts,
+    (localizedTexts) => {
+        return localizedTexts.personalInfo;
+    }
+);
+
 export default {
     homeLocalization,
     sideBarLocalization,
-    loginLocalization
+    loginLocalization,
+    personalInfoLocalization
 };

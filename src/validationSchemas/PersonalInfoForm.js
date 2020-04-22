@@ -1,10 +1,11 @@
 import * as Yup from 'yup';
 
-export const validationSchema = Yup.object({
-    firstname: Yup.string().required('Please insert your first name'),
-    lastname: Yup.string().required('Please insert your last name'),
-    username: Yup.string().required('Please insert a cool username'),
-    birthdate: Yup.string().required('Please insert a date of birth'),
-    city: Yup.string().required('Please insert your city'),
-    state: Yup.string().required('Please insert your state')
-});
+export const validationSchema = (localization) =>
+    Yup.object({
+        firstname: Yup.string().required(localization.requiredError),
+        lastname: Yup.string().required(localization.requiredError),
+        username: Yup.string().required(localization.requiredError),
+        birthdate: Yup.string().required(localization.requiredError),
+        city: Yup.string().required(localization.requiredError),
+        state: Yup.string().required(localization.requiredError)
+    });

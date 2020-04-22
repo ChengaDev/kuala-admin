@@ -18,9 +18,14 @@ export default {
                     short: 'Minimum 8 chearacters'
                 }
             },
+            button: {
+                fetching: 'Get Ready...',
+                idle: 'Get in!'
+            },
             errors: {
                 loginFailed: 'Login failed, please try again'
-            }
+            },
+            validInputHint: 'Looks good!'
         },
         forgotPasswordButton: 'Forgot your password?'
     },
@@ -43,9 +48,14 @@ export default {
                     short: 'מינימום 8 תווים'
                 }
             },
+            button: {
+                fetching: 'כבר מגיעים...',
+                idle: 'יאללה!'
+            },
             errors: {
                 loginFailed: 'התחברות נכשלה, נסה שנית'
-            }
+            },
+            validInputHint: 'תקין!'
         },
         forgotPasswordButton: 'שכחת סיסמא?'
     }

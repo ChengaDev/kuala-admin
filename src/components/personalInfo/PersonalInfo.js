@@ -1,15 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { user as userSelector } from '../../state/auth/selectors';
+import { personalInfoLocalization } from '../../state/localization/selectors';
 import styled from 'styled-components';
 import PersonalInfoForm from './PersonalInfoForm';
+import withLanguage from '../hoc/WithLanguage';
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ currentLanguage }) => {
     const user = useSelector(userSelector);
+    const localization = useSelector(personalInfoLocalization);
 
     return (
         <PersonalInfoPage>
-            <PersonalInfoForm user={user} />
+            <PersonalInfoForm
+                user={user}
+                localization={localization.form}
+                currentLanguage={currentLanguage}
+            />
         </PersonalInfoPage>
     );
 };
@@ -30,4 +37,4 @@ const PersonalInfoPage = styled.div`
     }
 `;
 
-export default PersonalInfo;
+export default withLanguage(PersonalInfo);

@@ -13,13 +13,15 @@ import logo from '../../images/LOGO_cropped.png';
 import { Link, Redirect } from 'react-router-dom';
 import routes from '../../appRoutes';
 import LanguageSelector from '../common/LanguageSelector';
+import withLanguage from '../hoc/WithLanguage';
+import { eLanguageDirection } from '../../staticData/language';
 
-const LoginPage = () => {
+const LoginPage = ({ currentLanguage }) => {
     const dispatch = useDispatch();
-    let isFetching = useSelector(isFetchingLogin);
-    let isLoginFailed = useSelector(hasFailed);
-    let isAuthenticated = useSelector(isUserAuthenticated);
-    let localization = useSelector(loginLocalization);
+    const isFetching = useSelector(isFetchingLogin);
+    const isLoginFailed = useSelector(hasFailed);
+    const isAuthenticated = useSelector(isUserAuthenticated);
+    const localization = useSelector(loginLocalization);
 
     const handleLogin = async (email, password) => {
         dispatch(startLogin({ email, password }));
@@ -31,7 +33,7 @@ const LoginPage = () => {
 
     const renderLoginPage = () => {
         return (
-            <LoginPageWrapper>
+            <LoginPageWrapper currentLanguage={currentLanguage}>
                 <LoginBox>
                     <h2>{localization.title}</h2>
                     <Logo>
@@ -104,14 +106,24 @@ const LoginPageWrapper = styled.div`
     min-height: 100vh;
     background-color: ${(props) => props.theme.colors.appBackground};
     width: 100%;
+    direction: ${(props) => props.currentLanguage.direction};
 
-    /* & input {
-        direction: rtl;
-    }
+    ${(props) =>
+        props.currentLanguage.direction === eLanguageDirection.RightToLeft &&
+        `
+        div[class$="feedback"] {
+            text-align: right;
+            direction: rtl;
+        }
 
-    & label {
-        float: right;
-    } */
+        & input {
+            direction: rtl;
+        }
+
+        & label {
+            float: right;
+        }
+    `};
 `;
 
 const ForgotPassword = styled.div`
@@ -140,4 +152,4 @@ const LoginFailedMessage = styled.div`
     color: ${(props) => props.theme.colors.red};
 `;
 
-export default LoginPage;
+export default withLanguage(LoginPage);

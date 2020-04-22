@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Col } from 'react-bootstrap';
 import { FadeInAnimation } from '../../../Animations';
 
-const GotSummaryBox = ({ title, data, path }) => {
+const SummaryBox = ({ title, data, path }) => {
     return (
         <Col xl={3} lg={4} md={6} sm={6} xs={12}>
             <Box userHasItems={data > 0}>
@@ -71,4 +71,4 @@ const Title = styled.div`
     }
 `;
 
-export default React.memo(GotSummaryBox);
+export default React.memo(SummaryBox);

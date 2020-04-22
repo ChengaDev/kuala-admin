@@ -7,8 +7,12 @@ import { isMobileOnly } from 'react-device-detect';
 import SummarySection from './sections/summary/SummarySection';
 import ChartsSection from './sections/charts/ChartsSection';
 import { loadSummary } from '../../api/kuala-api/summary/summary';
+import { FadeInAnimation } from '../Animations';
+import { Container } from 'react-bootstrap';
+import withLanguage from '../hoc/WithLanguage';
+import { eLanguageDirection } from '../../staticData/language';
 
-const Home = () => {
+const Home = ({ currentLanguage }) => {
     const user = useSelector(userSelector);
     const localization = useSelector(homeLocalization);
 
@@ -25,6 +29,14 @@ const Home = () => {
 
     return (
         <Page>
+            <WelcomeMessage
+                direction={currentLanguage.direction}
+                isMobile={isMobileOnly}
+            >
+                <Container fluid>
+                    {localization.welcomeMessage}, <b>{user.firstname}</b>!
+                </Container>
+            </WelcomeMessage>
             <SummarySection
                 summaryData={summaryData}
                 user={user}
@@ -41,10 +53,27 @@ const Home = () => {
     );
 };
 
+const WelcomeMessage = styled.div`
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: ${(props) => props.theme.colors.white};
+    animation: ${FadeInAnimation} 0.8s;
+    direction: ${(props) => props.direction};
+
+    & > div:first-child {
+        padding: 0 !important;
+    }
+
+    ${(props) => props.isMobile && `text-align: center;`}
+    ${(props) =>
+        props.direction === eLanguageDirection.RightToLeft &&
+        `text-align: right;`}
+`;
+
 const Page = styled.div`
     padding: 30px;
     background-color: ${(props) => props.theme.colors.appBackground};
     min-height: 100vh;
 `;
 
-export default Home;
+export default withLanguage(Home);

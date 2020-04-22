@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Col } from 'react-bootstrap';
 import { FadeInAnimation } from '../../../Animations';
 
-const GotSummaryBox = ({ title, data, path }) => {
+const PersonalInfoBox = ({ title, data, path }) => {
     return (
         <Col xl={6} lg={4} md={6} sm={6} xs={12}>
             <Link to={path}>
@@ -92,4 +92,4 @@ const Data = styled.div`
     }
 `;
 
-export default React.memo(GotSummaryBox);
+export default React.memo(PersonalInfoBox);

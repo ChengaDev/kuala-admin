@@ -31,7 +31,7 @@ const LoginForm = ({ onSubmit, isFetching, localization }) => {
                                 isInvalid={!!errors.email}
                             />
                             <Form.Control.Feedback type='valid'>
-                                Looks good!
+                                {localization.validInputHint}
                             </Form.Control.Feedback>
                             <Form.Control.Feedback type='invalid'>
                                 {errors.email}
@@ -51,7 +51,7 @@ const LoginForm = ({ onSubmit, isFetching, localization }) => {
                                 isInvalid={!!errors.password}
                             />
                             <Form.Control.Feedback type='valid'>
-                                Looks good!
+                                {localization.validInputHint}
                             </Form.Control.Feedback>
                             <Form.Control.Feedback type='invalid'>
                                 {errors.password}
@@ -64,7 +64,9 @@ const LoginForm = ({ onSubmit, isFetching, localization }) => {
                                 variant='primary'
                                 type='submit'
                             >
-                                {isFetching ? 'Get Ready...' : 'Get in!'}
+                                {isFetching
+                                    ? localization.button.fetching
+                                    : localization.button.idle}
                             </Button>
                         </ButtonWrapper>
                     </Form>

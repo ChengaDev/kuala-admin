@@ -7,7 +7,7 @@ import appRoutes from '../../../../appRoutes';
 import { FadeInAnimation } from '../../../Animations';
 import logo from '../../../../images/LOGO_cropped.png';
 
-const SummarySection = ({ user, summaryData, isMoblie, localization }) => {
+const SummarySection = ({ summaryData, isMoblie, localization }) => {
     const renderSummaryBoxes = () => {
         return (
             <>
@@ -23,13 +23,13 @@ const SummarySection = ({ user, summaryData, isMoblie, localization }) => {
                         data='X'
                         path={appRoutes.personalInfo}
                     />
-                    {summaryData.map((summaryItem) => {
+                    {Object.keys(summaryData).map((key) => {
                         return (
                             <SummaryBox
-                                key={summaryItem.title}
+                                key={localization[key]}
                                 isLoading={false}
-                                title={summaryItem.title}
-                                data={summaryItem.data}
+                                title={localization[key]}
+                                data={summaryData[key]}
                             />
                         );
                     })}
@@ -61,9 +61,6 @@ const SummarySection = ({ user, summaryData, isMoblie, localization }) => {
     return (
         <Summary>
             <Container fluid>
-                <WelcomeMessage isMobile={isMoblie}>
-                    Welcome back, <b>{user.firstname}</b>!
-                </WelcomeMessage>
                 <Row>
                     <Col>
                         <SummaryBoxes>
@@ -92,15 +89,6 @@ const Summary = styled.div`
     & > div:first-child {
         padding: 0 !important;
     }
-`;
-
-const WelcomeMessage = styled.div`
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: ${(props) => props.theme.colors.white};
-    animation: ${FadeInAnimation} 0.8s;
-
-    ${(props) => props.isMobile && `text-align: center;`}
 `;
 
 const SummaryBoxes = styled.div`
