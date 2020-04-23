@@ -3,13 +3,7 @@ import { eLanguage } from '../staticData/language';
 
 export default {
     auth: {
-        user: {
-            firstname: 'Chen',
-            lastname: 'Gazit',
-            username: 'Chenga',
-            email: 'gazit.chen@gmail.com',
-            birthdate: '1988-09-15'
-        },
+        user: null,
         token: null,
         isFetchingLogin: false,
         hasFailed: false,
@@ -18,5 +12,6 @@ export default {
     localization: {
         texts: localization,
         currentLanguage: eLanguage.English
-    }
+    },
+    projects: null
 };

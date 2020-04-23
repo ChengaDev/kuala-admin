@@ -19,6 +19,20 @@ const Home = lazy(() => {
     });
 });
 
+const Projects = lazy(() => {
+    return new Promise((resolve) => {
+        setTimeout(
+            () =>
+                resolve(
+                    import(
+                        /* webpackChunkName: "projects" */ '../projects/ProjectsIndexPage'
+                    )
+                ),
+            1000
+        );
+    });
+});
+
 const PersonalInfo = lazy(() => {
     return new Promise((resolve) => {
         setTimeout(
@@ -55,6 +69,11 @@ const ApplicationRouter = () => {
                             exact
                             path={routes.personalInfo}
                             component={PersonalInfo}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path={routes.projects}
+                            component={Projects}
                         />
                         <ProtectedRoute
                             exact

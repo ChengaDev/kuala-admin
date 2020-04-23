@@ -1,10 +1,10 @@
-import kualaApi from '../base';
+import kualaApiBaseRequest from '../base';
 
 const usersPath = '/users';
 
 export const login = async (email, password) => {
     try {
-        let response = await kualaApi.post(`${usersPath}/login`, {
+        let response = await kualaApiBaseRequest().post(`${usersPath}/login`, {
             email,
             password
         });
