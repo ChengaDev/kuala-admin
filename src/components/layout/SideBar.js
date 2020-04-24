@@ -5,12 +5,15 @@ import { Button } from 'react-bootstrap';
 import getNavigationLinks from '../../staticData/navigationLinks';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { startLogout } from '../../state/auth/actions';
 import { sideBarLocalization } from '../../state/localization/selectors';
 import LanguageSelector from '../common/LanguageSelector';
+import appRoutes from '../../appRoutes';
 
 const SideBar = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const onLogoutClick = () => {
         dispatch(startLogout());
@@ -18,6 +21,7 @@ const SideBar = () => {
 
     const localization = useSelector(sideBarLocalization);
     const navigationLinks = getNavigationLinks(localization.links);
+    debugger;
 
     return (
         <Bar>
@@ -28,7 +32,14 @@ const SideBar = () => {
             <NavigationLinks>
                 {navigationLinks.map((link) => {
                     return (
-                        <NavigationLink key={link.text}>
+                        <NavigationLink
+                            isSelected={
+                                (location.pathname.indexOf(link.path) > -1 &&
+                                    link.path !== appRoutes.home) ||
+                                location.pathname === link.path
+                            }
+                            key={link.text}
+                        >
                             <Link to={link.path}>{link.text}</Link>
                         </NavigationLink>
                     );
@@ -61,11 +72,15 @@ const NavigationLink = styled.div`
     margin-bottom: 12px;
 
     & a {
-        color: ${(props) => props.theme.colors.grayFont};
+        color: ${(props) =>
+            props.isSelected
+                ? props.theme.colors.darkBlueFont
+                : props.theme.colors.grayFont};
         text-decoration: none;
+        font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
     }
 
-    &:hover {
+    &:hover a {
         transition: font-weight 0.1s linear;
         font-weight: bold;
     }
@@ -114,4 +129,4 @@ const LogoutButton = styled.div`
     }
 `;
 
-export default SideBar;
+export default React.memo(SideBar);
