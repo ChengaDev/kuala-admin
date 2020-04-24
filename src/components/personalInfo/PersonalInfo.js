@@ -1,18 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { user as userSelector } from '../../state/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUser } from '../../state/users/selectors';
 import { personalInfoLocalization } from '../../state/localization/selectors';
 import styled from 'styled-components';
 import PersonalInfoForm from './PersonalInfoForm';
 import withLanguage from '../hoc/WithLanguage';
+import { updateUserStart } from '../../state/users/actions';
 
 const PersonalInfo = ({ currentLanguage }) => {
-    const user = useSelector(userSelector);
+    const dispatch = useDispatch();
+    const user = useSelector(currentUser);
     const localization = useSelector(personalInfoLocalization);
+
+    const onFormSubmit = async (user) => {
+        dispatch(updateUserStart(user));
+    };
 
     return (
         <PersonalInfoPage>
             <PersonalInfoForm
+                onSubmit={onFormSubmit}
                 user={user}
                 localization={localization.form}
                 currentLanguage={currentLanguage}

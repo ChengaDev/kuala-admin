@@ -1,10 +1,5 @@
 import initialState from '../initialState';
-import {
-    LOGIN_SUCCESS,
-    LOGIN_FETCHED,
-    LOGIN_FAILED,
-    LOGOUT
-} from '../auth/types';
+import { LOGIN_SUCCESS, LOGIN_FETCHED, LOGIN_FAILED, LOGOUT } from './types';
 
 export default function authReducer(state = initialState.auth, action) {
     switch (action.type) {
@@ -25,7 +20,6 @@ export default function authReducer(state = initialState.auth, action) {
         }
         case LOGIN_SUCCESS: {
             return Object.assign({}, state, {
-                user: action.user,
                 token: action.token,
                 isFetchingLogin: false,
                 hasFailed: false,

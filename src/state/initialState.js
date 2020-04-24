@@ -3,7 +3,6 @@ import { eLanguage } from '../staticData/language';
 
 export default {
     auth: {
-        user: null,
         token: null,
         isFetchingLogin: false,
         hasFailed: false,
@@ -13,5 +12,6 @@ export default {
         texts: localization,
         currentLanguage: eLanguage.English
     },
+    users: null,
     projects: null
 };

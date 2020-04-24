@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { user as userSelector } from '../../state/auth/selectors';
+import { currentUser } from '../../state/users/selectors';
 import { homeLocalization } from '../../state/localization/selectors';
 import { isMobileOnly } from 'react-device-detect';
 import SummarySection from './sections/summary/SummarySection';
@@ -13,7 +13,7 @@ import withLanguage from '../hoc/WithLanguage';
 import { eLanguageDirection } from '../../staticData/language';
 
 const Home = ({ currentLanguage }) => {
-    const user = useSelector(userSelector);
+    const user = useSelector(currentUser);
     const localization = useSelector(homeLocalization);
 
     let [summaryData, setSummaryData] = useState(null);

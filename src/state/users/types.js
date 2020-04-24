@@ -1,0 +1,9 @@
+export const UPDATE_USER_START = 'users/UPDATE_USER_START';
+export const UPDATE_USER_SUCCESS = 'users/UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAILED = 'users/UPDATE_USER_FAILED';
+
+export default {
+    UPDATE_USER_START,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAILED
+};

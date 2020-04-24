@@ -21,7 +21,6 @@ const SideBar = () => {
 
     const localization = useSelector(sideBarLocalization);
     const navigationLinks = getNavigationLinks(localization.links);
-    debugger;
 
     return (
         <Bar>

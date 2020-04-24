@@ -16,14 +16,14 @@ const PersonalInfoForm = ({
     return (
         <FormWrapper currentLanguage={currentLanguage}>
             <Formik
-                onSubmit={(values) => onSubmit(values.email, values.password)}
+                onSubmit={(values) => onSubmit({ ...values })}
                 validationSchema={validationSchema(localization)}
                 initialValues={{
                     firstname: user.firstname,
                     lastname: user.lastname,
                     username: user.username,
                     email: user.email,
-                    birthdate: user.birthdate,
+                    dateOfBirth: user.dateOfBirth,
                     city: user.city,
                     state: user.state
                 }}
@@ -123,9 +123,9 @@ const PersonalInfoForm = ({
                                 </Form.Label>
                                 <Form.Control
                                     onChange={handleChange}
-                                    value={values.birthdate}
+                                    value={values.dateOfBirth}
                                     type='date'
-                                    name='birthdate'
+                                    name='dateOfBirth'
                                     placeholder={
                                         localization.birthdate.placeholder
                                     }
@@ -151,11 +151,7 @@ const PersonalInfoForm = ({
                                 <Form.Label>
                                     {localization.email.label}
                                 </Form.Label>
-                                <Form.Control
-                                    readOnly
-                                    defaultValue={values.email}
-                                    value={user.email}
-                                />
+                                <Form.Control readOnly value={values.email} />
                                 <Form.Control.Feedback type='valid'>
                                     {localization.validInputHint}
                                 </Form.Control.Feedback>
