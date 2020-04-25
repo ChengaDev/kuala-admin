@@ -11,7 +11,7 @@ import { sideBarLocalization } from '../../state/localization/selectors';
 import LanguageSelector from '../common/LanguageSelector';
 import appRoutes from '../../appRoutes';
 
-const SideBar = () => {
+const SideBar = ({ isInteractive }) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -23,7 +23,7 @@ const SideBar = () => {
     const navigationLinks = getNavigationLinks(localization.links);
 
     return (
-        <Bar>
+        <Bar isInteractive={isInteractive}>
             <Logo>
                 <img alt='לוגו' src={logo} />
             </Logo>
@@ -97,6 +97,8 @@ const Bar = styled.div`
     @media screen and (min-width: 1400px) {
         width: 280px;
     }
+
+    ${(props) => !props.isInteractive && `pointer-events: none !important;`}
 `;
 
 const Logo = styled.div`

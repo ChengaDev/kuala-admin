@@ -8,6 +8,9 @@ export default {
         hasFailed: false,
         isAuthenticated: false
     },
+    modals: {
+        showProcessingModal: false
+    },
     localization: {
         texts: localization,
         currentLanguage: eLanguage.English
