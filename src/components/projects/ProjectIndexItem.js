@@ -35,7 +35,7 @@ const ProjectDescription = styled.div`
     margin-top: 13px;
     color: ${(props) => props.theme.colors.black};
     font-size: 20px;
-    height: 88px;
+    height: 87px;
     overflow: hidden;
 
     @media screen and (max-width: 1400px) {
