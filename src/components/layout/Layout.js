@@ -8,13 +8,13 @@ import { showProcessingModal } from '../../state/modals/selectors';
 
 const Layout = ({ children }) => {
     const shouldShowProcessingModal = useSelector(showProcessingModal);
-    const userInteractionEnabled = !isMobileOnly && !shouldShowProcessingModal;
+    const userInteractionEnabled = !shouldShowProcessingModal;
 
     return (
         <>
-            {!isMobileOnly && (
+            <DesktopSideBar>
                 <SideBar isInteractive={userInteractionEnabled} />
-            )}
+            </DesktopSideBar>
             <Content
                 id='kualaContent'
                 isInteractive={userInteractionEnabled}
@@ -36,7 +36,17 @@ const Content = styled.div`
         margin-left: 280px;
     }
 
+    @media screen and (max-width: 768px) {
+        margin-left: 0px;
+    }
+
     ${(props) => !props.isInteractive && `pointer-events: none !important;`}
+`;
+
+const DesktopSideBar = styled.div`
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export default Layout;

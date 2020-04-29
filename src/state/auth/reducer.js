@@ -5,7 +5,6 @@ export default function authReducer(state = initialState.auth, action) {
     switch (action.type) {
         case LOGIN_FETCHED:
             return Object.assign({}, state, {
-                user: null,
                 token: null,
                 isFetchingLogin: true,
                 hasFailed: false,

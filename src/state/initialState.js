@@ -15,6 +15,8 @@ export default {
         texts: localization,
         currentLanguage: eLanguage.English
     },
-    users: null,
+    users: {
+        currentUser: null
+    },
     projects: null
 };

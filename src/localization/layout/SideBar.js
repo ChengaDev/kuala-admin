@@ -3,11 +3,11 @@ export default {
         links: {
             home: 'Home',
             personalInfo: 'Personal info',
+            projects: 'Projects',
             experience: 'Work Experience',
             education: 'Education',
             recommendations: 'Recommendations',
             achievments: 'Achievments',
-            projects: 'Projects',
             skills: 'Skills',
             logout: 'Logout'
         }
@@ -16,11 +16,11 @@ export default {
         links: {
             home: 'עמוד הבית',
             personalInfo: 'פרטים אישיים',
+            projects: 'פרוייקטים',
             experience: 'ניסיון תעסוקתי',
             education: 'השכלה',
             recommendations: 'המלצות',
             achievments: 'הישגים',
-            projects: 'פרוייקטים',
             skills: 'כישורים בולטים',
             logout: 'התנתק'
         }

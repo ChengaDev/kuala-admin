@@ -46,10 +46,10 @@ const PersonalInfoForm = ({
                                         onChange={handleChange}
                                         value={values.firstname}
                                         type='text'
-                                        name={
+                                        name='firstname'
+                                        placeholder={
                                             localization.firstname.placeholder
                                         }
-                                        placeholder=''
                                         isValid={
                                             touched.firstname &&
                                             !errors.firstname

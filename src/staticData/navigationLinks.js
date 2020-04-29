@@ -11,6 +11,10 @@ const getNavigationLinks = (localization) => {
             path: appRoutes.personalInfo
         },
         {
+            text: localization.projects,
+            path: appRoutes.projects
+        },
+        {
             text: localization.experience,
             path: appRoutes.experience
         },
@@ -26,10 +30,7 @@ const getNavigationLinks = (localization) => {
             text: localization.achievments,
             path: appRoutes.achievments
         },
-        {
-            text: localization.projects,
-            path: appRoutes.projects
-        },
+
         {
             text: localization.skills,
             path: appRoutes.skills
